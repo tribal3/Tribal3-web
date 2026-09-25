@@ -31,7 +31,7 @@ export default function MagneticButton({ children,   className = "", onClick, ty
     <button
       ref={ref}
       type={type}
-      className={`relative overflow-hidden rounded-full px-8 py-3 bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 font-medium transition-colors hover:bg-cyan-500/20 hover:border-cyan-400/60 ${className}`}
+      className={`relative min-h-11 overflow-hidden rounded-full border border-cyan-400/30 bg-cyan-500/10 px-5 py-3 text-sm font-medium text-cyan-300 transition-colors hover:border-cyan-400/60 hover:bg-cyan-500/20 sm:px-8 sm:text-base ${className}`}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
       onClick={onClick}

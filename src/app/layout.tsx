@@ -3,7 +3,7 @@ import "./globals.css";
 import ClientLayout from "./ClientLayout";
 
 export const metadata: Metadata = {
-  title: "AM DEV STUDIO | Premium Digital Experiences",
+  title: "Tribal 3 | Premium Digital Experiences",
   description: "MERN Stack · Graphics Design · Digital Marketing · Shopify · WordPress · AI Integration",
   keywords: "web development, MERN stack, digital agency, 3D websites, UI/UX design",
 };

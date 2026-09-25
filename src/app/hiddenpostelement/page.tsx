@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -65,10 +65,6 @@ export default function HiddenPostElement() {
       }
     } catch { /* ignore */ }
   }, []);
-
-  useEffect(() => {
-    if (!showLogin) fetchProjects();
-  }, [showLogin, fetchProjects]);
 
   const resetForm = () => {
     setForm({ title: "", description: "", url: "", imageUrl: "", techStack: "", category: "top-notch", ownerHighlight: "" });
@@ -217,6 +213,7 @@ export default function HiddenPostElement() {
               });
               if (res.ok) {
                 setShowLogin(false);
+                void fetchProjects();
               } else {
                 alert("Invalid secret key");
               }

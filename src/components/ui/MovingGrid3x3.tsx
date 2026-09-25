@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { projects, ProjectData } from "@/data/projects";
 
@@ -20,6 +20,7 @@ const SLIDES = chunked(TOP_NOTCH, 3);
 export default function MovingGrid3x3() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
+  const reduceMotion = useReducedMotion();
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -33,10 +34,10 @@ export default function MovingGrid3x3() {
 
   const resetTimer = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
-    if (totalSlides > 0) {
+    if (!reduceMotion && totalSlides > 0) {
       intervalRef.current = setInterval(goNext, 5000);
     }
-  }, [goNext, totalSlides]);
+  }, [goNext, reduceMotion, totalSlides]);
 
   useEffect(() => {
     resetTimer();
@@ -45,7 +46,7 @@ export default function MovingGrid3x3() {
 
   useEffect(() => {
     const el = sectionRef.current;
-    if (!el || totalSlides === 0) return;
+    if (!el || totalSlides === 0 || reduceMotion) return;
     const onScroll = () => {
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom > 0) {
@@ -55,7 +56,7 @@ export default function MovingGrid3x3() {
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, [goNext, resetTimer, totalSlides]);
+  }, [goNext, reduceMotion, resetTimer, totalSlides]);
 
   const slideVariants = {
     enter: (dir: number) => ({ x: dir > 0 ? 300 : -300, opacity: 0 }),
@@ -66,22 +67,22 @@ export default function MovingGrid3x3() {
   if (totalSlides === 0) return null;
 
   return (
-    <section ref={sectionRef} className="relative w-full py-24 overflow-hidden bg-dark-900">
-      <div className="max-w-7xl mx-auto px-4 mb-12">
+    <section ref={sectionRef} className="relative w-full overflow-hidden bg-dark-900 py-16 sm:py-24">
+      <div className="mx-auto mb-10 max-w-7xl px-4 sm:mb-12 sm:px-6">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold text-center"
+          className="text-center text-3xl font-bold sm:text-4xl md:text-5xl"
         >
           <span className="text-gradient">Top Notch</span> Work
         </motion.h2>
-        <p className="text-center text-gray-400 mt-3 text-lg">
+        <p className="mt-3 text-center text-sm text-gray-400 sm:text-base">
           Our premier projects that define excellence
         </p>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4" style={{ minHeight: 420 }}>
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={current}
@@ -91,24 +92,32 @@ export default function MovingGrid3x3() {
             animate="center"
             exit="exit"
             transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 md:gap-6"
           >
             {SLIDES[current].map((project, i) => (
-              <ProjectGridCard key={project.id ?? i} project={project} />
+              <div
+                key={project.id ?? i}
+                className={i === 0 ? "" : i === 1 ? "hidden sm:block" : "hidden md:block"}
+              >
+                <ProjectGridCard project={project} />
+              </div>
             ))}
           </motion.div>
         </AnimatePresence>
       </div>
 
-      <div className="flex justify-center mt-10 gap-2">
+      <div className="mt-8 flex justify-center gap-1 sm:mt-10">
         {Array.from({ length: totalSlides }).map((_, i) => (
           <button
             key={i}
+            type="button"
+            aria-label={`Show project slide ${i + 1}`}
+            aria-current={i === current ? "true" : undefined}
             onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); resetTimer(); }}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-              i === current ? "bg-cyan-400 w-8" : "bg-dark-600 hover:bg-cyan-400/50"
-            }`}
-          />
+            className="flex h-11 w-8 items-center justify-center"
+          >
+            <span className={`h-2.5 rounded-full transition-all duration-300 ${i === current ? "w-8 bg-cyan-400" : "w-2.5 bg-dark-600 hover:bg-cyan-400/50"}`} />
+          </button>
         ))}
       </div>
     </section>
@@ -133,7 +142,7 @@ function ProjectGridCard({ project }: { project: ProjectData }) {
             alt={project.title}
             fill
             className="object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500"
-            sizes="(max-width: 768px) 100vw, 33vw"
+            sizes="(max-width: 639px) 100vw, (max-width: 767px) 50vw, 33vw"
           />
         ) : null}
         <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
@@ -146,8 +155,8 @@ function ProjectGridCard({ project }: { project: ProjectData }) {
           />
         )}
       </div>
-      <div className="p-5">
-        <h3 className="text-xl font-semibold text-white group-hover:text-cyan-400 transition-colors">
+      <div className="p-4 sm:p-5">
+        <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-cyan-400 sm:text-xl">
           {project.title}
         </h3>
         <p className="text-gray-400 text-sm mt-1 line-clamp-2">{project.description}</p>
