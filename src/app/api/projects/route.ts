@@ -29,8 +29,6 @@ export async function POST(req: NextRequest) {
       description: body.description,
       url: body.url,
       imageUrl: body.imageUrl || "",
-      imageKitFileId: body.imageKitFileId || "",
-      imageKitUrl: body.imageKitUrl || "",
       techStack: body.techStack || [],
       category: body.category || "standard",
       ownerHighlight: body.ownerHighlight || null,

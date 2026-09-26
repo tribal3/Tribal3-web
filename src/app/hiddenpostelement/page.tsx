@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -10,8 +10,6 @@ interface ProjectDoc {
   description: string;
   url: string;
   imageUrl: string;
-  imageKitUrl: string;
-  imageKitFileId: string;
   techStack: string[];
   category: "top-notch" | "standard";
   ownerHighlight: string | null;
@@ -29,13 +27,6 @@ interface FormData {
   ownerHighlight: string;
 }
 
-interface ImageState {
-  status: "idle" | "uploading" | "done" | "error";
-  url: string;
-  fileId: string;
-  previewUrl: string;
-}
-
 type Tab = "add" | "manage";
 
 export default function HiddenPostElement() {
@@ -50,11 +41,7 @@ export default function HiddenPostElement() {
     title: "", description: "", url: "", imageUrl: "",
     techStack: "", category: "top-notch", ownerHighlight: "",
   });
-  const [image, setImage] = useState<ImageState>({
-    status: "idle", url: "", fileId: "", previewUrl: "",
-  });
   const [deleteTarget, setDeleteTarget] = useState<ProjectDoc | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const fetchProjects = useCallback(async () => {
     try {
@@ -68,50 +55,8 @@ export default function HiddenPostElement() {
 
   const resetForm = () => {
     setForm({ title: "", description: "", url: "", imageUrl: "", techStack: "", category: "top-notch", ownerHighlight: "" });
-    setImage({ status: "idle", url: "", fileId: "", previewUrl: "" });
     setEditingId(null);
   };
-
-  const uploadToImageKit = useCallback(async (fileOrBase64: File | string, fileName: string) => {
-    setImage((prev) => ({ ...prev, status: "uploading" }));
-    try {
-      const fd = new FormData();
-      if (typeof fileOrBase64 === "string") fd.append("pasteData", fileOrBase64);
-      else fd.append("file", fileOrBase64);
-      fd.append("fileName", fileName.replace(/[^a-zA-Z0-9-_]/g, "-"));
-
-      const res = await fetch("/api/upload-image", {
-        method: "POST",
-        headers: { "x-admin-secret": secretKey },
-        body: fd,
-      });
-      if (!res.ok) throw new Error("Upload failed");
-      const data = await res.json();
-      setImage({ status: "done", url: data.url, fileId: data.fileId, previewUrl: data.url });
-      setForm((prev) => ({ ...prev, imageUrl: data.url }));
-    } catch {
-      setImage((prev) => ({ ...prev, status: "error" }));
-    }
-  }, [secretKey]);
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setImage((prev) => ({ ...prev, previewUrl: URL.createObjectURL(file) }));
-    uploadToImageKit(file, file.name);
-  };
-
-  const handlePaste = useCallback(async (e: React.ClipboardEvent) => {
-    for (const item of e.clipboardData.items) {
-      if (item.type.startsWith("image/")) {
-        const file = item.getAsFile();
-        if (!file) continue;
-        setImage((prev) => ({ ...prev, previewUrl: URL.createObjectURL(file) }));
-        await uploadToImageKit(file, `pasted-${Date.now()}`);
-        return;
-      }
-    }
-  }, [uploadToImageKit]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -123,8 +68,6 @@ export default function HiddenPostElement() {
         ...form,
         techStack: form.techStack.split(",").map((s) => s.trim()).filter(Boolean),
         ownerHighlight: form.ownerHighlight || null,
-        imageKitFileId: image.fileId,
-        imageKitUrl: image.url,
       };
 
       const url = editingId ? `/api/projects/${editingId}` : "/api/projects";
@@ -177,16 +120,10 @@ export default function HiddenPostElement() {
       title: p.title,
       description: p.description,
       url: p.url,
-      imageUrl: p.imageKitUrl || p.imageUrl || "",
+      imageUrl: p.imageUrl || "",
       techStack: p.techStack.join(", "),
       category: p.category,
       ownerHighlight: p.ownerHighlight || "",
-    });
-    setImage({
-      status: p.imageKitUrl ? "done" : "idle",
-      url: p.imageKitUrl || "",
-      fileId: p.imageKitFileId || "",
-      previewUrl: p.imageKitUrl || p.imageUrl || "",
     });
     setEditingId(p._id);
     setTab("add");
@@ -296,48 +233,17 @@ export default function HiddenPostElement() {
                   className="w-full bg-dark-700 border border-dark-600 rounded-xl px-5 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/50" />
               </div>
 
-              {/* Image upload */}
+              {/* Project image */}
               <div>
-                <label className="block text-sm text-gray-400 mb-2">Project Image</label>
-                <div
-                  onPaste={handlePaste}
-                  tabIndex={0}
-                  className="relative border-2 border-dashed border-dark-600 rounded-xl p-6 text-center hover:border-cyan-400/30 transition-colors focus:outline-none focus:border-cyan-400/50"
-                >
-                  {image.previewUrl ? (
-                    <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-3">
-                      <Image src={image.previewUrl} alt="Preview" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
-                      <button type="button" onClick={() => { setImage({ status: "idle", url: "", fileId: "", previewUrl: "" }); setForm((p) => ({ ...p, imageUrl: "" })); }}
-                        className="absolute top-2 right-2 bg-red-500/80 text-white w-7 h-7 rounded-full text-sm hover:bg-red-600">x</button>
-                    </div>
-                  ) : (
-                    <div className="py-6">
-                      <svg className="mx-auto w-10 h-10 text-gray-500 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <p className="text-gray-400 text-sm mb-1"><span className="text-cyan-400">Click to upload</span> or paste an image (Ctrl+V)</p>
-                      <p className="text-gray-600 text-xs">PNG, JPG, WebP up to 10MB</p>
-                    </div>
-                  )}
-                  <input ref={fileInputRef} type="file" accept="image/png,image/jpeg,image/webp" onChange={handleFileChange} className="hidden" />
-                  {!image.previewUrl && (
-                    <button type="button" onClick={() => fileInputRef.current?.click()} className="mt-3 text-sm text-cyan-400 hover:text-cyan-300">Browse Files</button>
-                  )}
-                </div>
-                {image.status === "uploading" && (
-                  <div className="flex items-center gap-2 mt-2 text-cyan-400 text-sm">
-                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
-                    Uploading to ImageKit...
+                <label className="block text-sm text-gray-400 mb-2">Project Image URL</label>
+                <input type="url" value={form.imageUrl} onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
+                  placeholder="https://example.com/projects/image.png"
+                  className="w-full bg-dark-700 border border-dark-600 rounded-lg px-4 py-2.5 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-cyan-400/50" />
+                {form.imageUrl && (
+                  <div className="relative mt-3 w-full aspect-video rounded-lg overflow-hidden bg-dark-700">
+                    <Image src={form.imageUrl} alt="Preview" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                   </div>
                 )}
-                {image.status === "error" && <p className="text-red-400 text-sm mt-2">Upload failed. Try again.</p>}
-                {image.status === "done" && <p className="text-green-400 text-sm mt-2">Uploaded to ImageKit</p>}
-                <div className="mt-3">
-                  <label className="block text-xs text-gray-500 mb-1">Or paste an image URL directly:</label>
-                  <input type="url" value={form.imageUrl} onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
-                    placeholder="https://ik.imagekit.io/your-id/projects/image.png"
-                    className="w-full bg-dark-700 border border-dark-600 rounded-lg px-4 py-2.5 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-cyan-400/50" />
-                </div>
               </div>
 
               <div>
@@ -389,8 +295,8 @@ export default function HiddenPostElement() {
                 {projects.map((p) => (
                   <div key={p._id} className="glass-card rounded-xl p-4 flex items-center gap-4 group">
                     <div className="relative w-20 h-14 rounded-lg overflow-hidden shrink-0 bg-dark-700">
-                      {(p.imageKitUrl || p.imageUrl) ? (
-                        <Image src={p.imageKitUrl || p.imageUrl} alt={p.title} fill className="object-cover" sizes="80px" />
+                      {p.imageUrl ? (
+                        <Image src={p.imageUrl} alt={p.title} fill className="object-cover" sizes="80px" />
                       ) : (
                         <div className="flex items-center justify-center h-full text-xs text-gray-600">No img</div>
                       )}

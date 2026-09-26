@@ -6,7 +6,6 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@imagekit/nodejs": "^7.6.3",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
     "bcryptjs": "^3.0.3",

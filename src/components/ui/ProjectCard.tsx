@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function ProjectCard({ project, index }: Props) {
-  const imageSrc = project.imageKitUrl || project.imageUrl || "";
+  const imageSrc = project.imageUrl || "";
 
   return (
     <motion.a

@@ -125,7 +125,7 @@ export default function MovingGrid3x3() {
 }
 
 function ProjectGridCard({ project }: { project: ProjectData }) {
-  const imageSrc = project.imageKitUrl || project.imageUrl || "";
+  const imageSrc = project.imageUrl || "";
 
   return (
     <motion.a
