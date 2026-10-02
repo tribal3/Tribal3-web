@@ -82,19 +82,18 @@ export default function About() {
           </div>
 
           <div className="mt-8 grid grid-cols-1 gap-3 min-[380px]:grid-cols-2 sm:flex sm:flex-wrap sm:gap-4">
-            <a
+<a
               href="#contact"
               className="flex min-h-11 items-center justify-center rounded-xl border border-cyan-400/30 bg-cyan-500/20 px-4 py-3 text-center text-sm font-medium text-cyan-300 transition-colors hover:bg-cyan-500/30 sm:px-6"
             >
               Get Started
             </a>
             <a
-              href="#founders"
+              href="#services"
               className="flex min-h-11 items-center justify-center rounded-xl border border-gray-600/40 px-4 py-3 text-center text-sm font-medium text-gray-300 transition-colors hover:border-gray-400/60 sm:px-6"
             >
-              Our Founders
+              Our Services
             </a>
-
           </div>
         </motion.div>
       </div>

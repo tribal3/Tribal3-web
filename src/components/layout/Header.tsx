@@ -8,7 +8,6 @@ import tribalLogo from "../../../images/tribal.logo.png";
 const navLinks = [
   { label: "Services", href: "#services" },
   { label: "About", href: "#about" },
-  { label: "Founders", href: "#founders" },
   { label: "Contact", href: "#contact" },
 ];
 

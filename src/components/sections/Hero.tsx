@@ -34,20 +34,14 @@ export default function Hero() {
             className="mt-7 grid grid-cols-1 gap-3 min-[380px]:grid-cols-2 sm:mt-8 sm:flex sm:flex-wrap sm:justify-center sm:gap-4"
           >
             <a
-              href="#founders"
-              className="flex min-h-11 items-center justify-center rounded-xl border border-cyan-400/30 bg-cyan-500/20 px-4 py-3 text-center text-sm font-medium text-cyan-300 transition-colors hover:bg-cyan-500/30 sm:px-6 sm:text-base"
-            >
-              Meet Our Founders
-            </a>
-            <a
               href="#services"
-              className="flex min-h-11 items-center justify-center rounded-xl border border-gray-600/40 px-4 py-3 text-center text-sm font-medium text-gray-300 transition-colors hover:border-gray-600/60 sm:px-6 sm:text-base"
+              className="flex min-h-11 items-center justify-center rounded-xl border border-cyan-400/30 bg-cyan-500/20 px-4 py-3 text-center text-sm font-medium text-cyan-300 transition-colors hover:bg-cyan-500/30 sm:px-6 sm:text-base"
             >
               Our Services
             </a>
             <a
-              href="#contact"
-              className="col-span-2 flex min-h-11 items-center justify-center rounded-xl border border-gray-600/40 px-4 py-3 text-center text-sm font-medium text-gray-300 transition-colors hover:border-gray-600/60 sm:col-span-1 sm:px-6 sm:text-base"
+              href="#about"
+              className="flex min-h-11 items-center justify-center rounded-xl border border-gray-600/40 px-4 py-3 text-center text-sm font-medium text-gray-300 transition-colors hover:border-gray-600/60 sm:px-6 sm:text-base"
             >
               About Us
             </a>
