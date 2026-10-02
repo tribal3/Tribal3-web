@@ -1,5 +1,8 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    {
+      "source": "/:path((?!api/|sitemap|robots|manifest|icon|opengraph-image|twitter-image|_next/|.*\\.).*)",
+      "destination": "/"
+    }
   ]
 }

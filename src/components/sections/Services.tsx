@@ -78,6 +78,13 @@ export default function Services() {
           <h2 className="mt-2 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
             Everything Your Business Needs <span className="text-gradient">to Go Digital</span>
           </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-gray-400 sm:text-base">
+            Tribal 3 is a full service software house offering custom web development, MERN stack
+            engineering, e-commerce builds on Shopify and WordPress, mobile app development, UI/UX
+            design, graphic design and branding, SEO, digital marketing, cloud and DevOps, CRM/ERP
+            software, API integration and long term maintenance &mdash; under one roof, at fair
+            prices.
+          </p>
         </motion.div>
 
         <div className="flex flex-col gap-4 md:gap-5 py-2">
