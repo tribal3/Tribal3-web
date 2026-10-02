@@ -1,0 +1,7 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /hiddenpostelement
+
+Host: https://www.tribal3.bond
+Sitemap: https://www.tribal3.bond/sitemap.xml
