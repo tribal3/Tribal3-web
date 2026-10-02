@@ -1,8 +1,11 @@
 import type { Metadata, Viewport } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import ClientLayout from "./ClientLayout";
 import StructuredData from "@/components/StructuredData";
 import { DESCRIPTION, KEYWORDS, SITE_NAME, SITE_URL, TITLE } from "@/lib/seo";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-8K0RVY0S2J";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -57,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="antialiased">
         <StructuredData />
+        <GoogleAnalytics gaId={GA_ID} />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
