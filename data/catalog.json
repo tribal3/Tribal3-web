@@ -1,0 +1,59 @@
+{
+  "items": [
+    {
+      "_id": "c28cf3b5-883f-416b-90f8-ecdb42bf8df9",
+      "type": "portfolio",
+      "title": "Miftah Al Quran",
+      "description": "Miftah Al Quran | Online Quran Learning Platform\nMiftah Al Quran is an interactive e-learning platform designed to connect students with qualified tutors for structured Quranic and Islamic education. It features student and tutor management dashboards, live class scheduling, curriculum tracking, and an integrated audio-visual portal for Tajweed, Nazra, and Hifz. By streamlining enrollment, progress reports, and fee management into a single responsive web interface, the platform delivers an accessible and organized remote learning environment for students worldwide",
+      "imageUrl": "https://ik.imagekit.io/c7jb3alnb/arcurepharma/products/image2.png",
+      "url": "https://www.miftahalquran.online/",
+      "order": 0,
+      "createdAt": "2026-10-10T08:23:49.231Z",
+      "updatedAt": "2026-10-10T08:23:49.231Z"
+    },
+    {
+      "_id": "10a89c15-5551-4e44-adfc-558803ad1d17",
+      "type": "product",
+      "title": "Resturant Pos Billing System",
+      "description": "Restaurant Flow modernizes restaurant management by unifying front-of-house billing and back-of-house operations into a single platform. Featuring real-time inventory tracking, instant POS checkout, and live digital menu sharing, it helps restaurant owners eliminate manual administrative overhead, optimize stock costs, and increase order throughput.",
+      "imageUrl": "https://ik.imagekit.io/c7jb3alnb/arcurepharma/products/image1.png",
+      "url": "https://www.resturantflow.bond/",
+      "order": 0,
+      "createdAt": "2026-10-10T08:12:58.707Z",
+      "updatedAt": "2026-10-10T08:12:58.707Z"
+    },
+    {
+      "_id": "12cac9ac-4db8-4900-9b17-e971a770949e",
+      "type": "portfolio",
+      "title": "Glow Cut",
+      "description": "Glow Cut is an AI-powered SaaS platform designed to streamline barbershop management and modernize customer booking. It features a dual-interface system offering barbers digital appointment scheduling and inventory tracking, while enabling users to discover nearby shops, compare pricing, and reserve slots online. Additionally, an integrated AI computer vision try-on engine analyzes facial structures to preview hairstyle choices in real time—eliminating client uncertainty, shortening wait times, and reducing booking drop-offs.",
+      "imageUrl": "https://ik.imagekit.io/c7jb3alnb/arcurepharma/products/image.png",
+      "url": "https://www.glowcut.bond/",
+      "order": 0,
+      "createdAt": "2026-10-10T07:48:08.201Z",
+      "updatedAt": "2026-10-10T07:48:08.201Z"
+    },
+    {
+      "_id": "4908f6d9-1882-4984-a5d0-c2e7c914f61a",
+      "type": "product",
+      "title": "Glow Cut",
+      "description": "Glow Cut is an AI-powered SaaS platform designed to streamline barbershop management and modernize customer booking. It features a dual-interface system offering barbers digital appointment scheduling and inventory tracking, while enabling users to discover nearby shops, compare pricing, and reserve slots online. Additionally, an integrated AI computer vision try-on engine analyzes facial structures to preview hairstyle choices in real time—eliminating client uncertainty, shortening wait times, and reducing booking drop-offs.",
+      "imageUrl": "https://ik.imagekit.io/c7jb3alnb/arcurepharma/products/image.png",
+      "url": "https://www.glowcut.bond/",
+      "order": 0,
+      "createdAt": "2026-10-10T07:47:13.972Z",
+      "updatedAt": "2026-10-10T07:47:13.972Z"
+    },
+    {
+      "_id": "cb028f7d-ab6a-4648-aa11-bcf98b6f06d3",
+      "type": "portfolio",
+      "title": "Arcure Pharma",
+      "description": "Arcure Pharma – E-Commerce & SEO Solution\nProject Overview\n\nArcure Pharma is a specialized e-commerce platform developed for a premier skincare and wellness brand. The goal was to build a robust, high-performance digital storefront that reflects the brand's quality while delivering a seamless, secure, and user-friendly shopping experience for skincare enthusiasts.\n\nKey Contributions & Features\n\nFull-Stack Development: Engineered the complete website architecture from the ground up, ensuring a responsive, modern interface optimized for desktop and mobile users.\n\nE-Commerce Functionality: Integrated intuitive product cataloging, streamlined checkout workflows, and secure payment processing to maximize user conversion.\n\nSearch Engine Optimization (SEO): Implemented comprehensive technical and on-page SEO strategies to enhance organic visibility, improve search engine rankings, and drive targeted traffic to the platform.\n\nPerformance & Scalability: Designed the backend and frontend for optimal loading speeds and scalability, supporting a smooth user journey even during high-traffic periods.\n\nTechnologies Used\n\nModern Web Technologies, Responsive Design, E-Commerce Integration, and Advanced SEO Strategies.",
+      "imageUrl": "https://ik.imagekit.io/sgfpwwphe/image.png",
+      "url": "https://www.arcurepharma.com",
+      "order": 0,
+      "createdAt": "2026-10-08T17:46:58.211Z",
+      "updatedAt": "2026-10-08T17:46:58.211Z"
+    }
+  ]
+}

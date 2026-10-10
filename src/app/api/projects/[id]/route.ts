@@ -1,12 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
-async function verifyAdmin(req: NextRequest) {
-  const secret = req.headers.get("x-admin-secret");
-  if (secret !== process.env.ADMIN_SECRET_KEY) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-  return null;
-}
+import { verifyAdmin } from "@/lib/admin";
 
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const unauth = await verifyAdmin(req);

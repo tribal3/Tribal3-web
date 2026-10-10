@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/:path((?!api/|sitemap|robots|manifest|icon|opengraph-image|twitter-image|_next/|.*\\.).*)",
+      "source": "/:path((?!api/|admin|products|portfolio|sitemap|robots|manifest|icon|opengraph-image|twitter-image|_next/|.*\\.).*)",
       "destination": "/"
     }
   ]

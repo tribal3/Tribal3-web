@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/admin";
 
 export async function GET() {
   try {
@@ -13,12 +14,10 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  try {
-    const secret = req.headers.get("x-admin-secret");
-    if (secret !== process.env.ADMIN_SECRET_KEY) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+  const unauth = verifyAdmin(req);
+  if (unauth) return unauth;
 
+  try {
     const { connectDB } = await import("@/lib/mongodb");
     const { Project } = await import("@/lib/models/Project");
     await connectDB();
