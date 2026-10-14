@@ -4,6 +4,7 @@ import Services from "@/components/sections/Services";
 import Approach from "@/components/sections/Approach";
 import MovingGrid3x3 from "@/components/ui/MovingGrid3x3";
 import Expertise from "@/components/sections/Expertise";
+import SeoContent from "@/components/sections/SeoContent";
 import Contact from "@/components/sections/Contact";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Approach />
       <MovingGrid3x3 />
       <Expertise />
+      <SeoContent />
       <Contact />
     </>
   );

@@ -46,6 +46,11 @@ export default function Contact() {
           <h2 className="mt-3 text-3xl font-bold sm:text-4xl md:text-5xl">
             Let&apos;s Build Something <span className="text-gradient">Amazing</span>
           </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-gray-400 sm:text-base">
+            Contact Tribal 3, a top software house in Karachi, for web development,
+            mobile apps, e-commerce, UI/UX design, SEO and digital marketing. Tell us
+            about your project and get a free quote.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">

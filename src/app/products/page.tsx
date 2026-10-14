@@ -7,7 +7,15 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "Explore the digital products and solutions built by Tribal 3 - ready to use tools crafted for modern businesses.",
+    "Explore digital products and solutions built by Tribal 3, the best software house in Karachi. Ready-to-use tools and custom software crafted for modern businesses in Pakistan and worldwide.",
+  keywords: [
+    "software house in Karachi",
+    "best software house in Karachi",
+    "software products Karachi",
+    "custom software development Karachi",
+    "IT company in Karachi",
+    "digital products Pakistan",
+  ],
   alternates: { canonical: "/products" },
 };
 

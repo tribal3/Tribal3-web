@@ -1,4 +1,4 @@
-import Link from "next/link";
+import HashLink from "@/components/ui/HashLink";
 import { SITE_EMAIL, mailComposeUrl } from "@/lib/seo";
 
 const quickLinks = [
@@ -22,7 +22,15 @@ export default function Footer() {
               <span className="text-gradient">Tribal 3</span>
             </h3>
             <p className="text-gray-500 text-sm leading-relaxed">
-              Premium digital experiences crafted with cutting-edge technology. We transform your vision into reality.
+              Tribal 3 is a leading software house in Karachi offering web
+              development, mobile app development, UI/UX design, SEO and digital
+              marketing. We build premium digital experiences that transform your
+              vision into reality.
+            </p>
+            <p className="mt-3 text-gray-500 text-xs leading-relaxed">
+              Best software house in Karachi &bull; software company in Karachi
+              &bull; web development company in Karachi &bull; mobile app
+              development &bull; SEO services in Karachi.
             </p>
           </div>
 
@@ -33,9 +41,9 @@ export default function Footer() {
               <ul className="space-y-1 sm:space-y-2">
                 {quickLinks.map((l) => (
                   <li key={l.label}>
-                    <Link href={l.href} className="flex min-h-10 items-center text-sm text-gray-500 transition-colors hover:text-cyan-400">
+                    <HashLink href={l.href} className="flex min-h-10 items-center text-sm text-gray-500 transition-colors hover:text-cyan-400">
                       {l.label}
-                    </Link>
+                    </HashLink>
                   </li>
                 ))}
               </ul>

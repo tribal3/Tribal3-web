@@ -7,7 +7,15 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Join the Tribal 3 team. Explore open roles at our digital agency and apply to build the future of digital experience with us.",
+    "Join the Tribal 3 team, a top software house in Karachi. Explore careers and open roles in web development, mobile apps, design, SEO and digital marketing, and apply today.",
+  keywords: [
+    "software house in Karachi",
+    "best software house in Karachi",
+    "IT jobs in Karachi",
+    "software house jobs Karachi",
+    "web developer jobs Karachi",
+    "developer jobs in Karachi",
+  ],
   alternates: { canonical: "/jobs" },
 };
 

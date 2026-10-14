@@ -79,11 +79,11 @@ export default function Services() {
             Everything Your Business Needs <span className="text-gradient">to Go Digital</span>
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-gray-400 sm:text-base">
-            Tribal 3 is a full service software house offering custom web development, MERN stack
+            Tribal 3 is a leading software house in Karachi offering custom web development, MERN stack
             engineering, e-commerce builds on Shopify and WordPress, mobile app development, UI/UX
-            design, graphic design and branding, SEO, digital marketing, cloud and DevOps, CRM/ERP
-            software, API integration and long term maintenance &mdash; under one roof, at fair
-            prices.
+            design, graphic design and branding, SEO services, digital marketing, cloud and DevOps, CRM/ERP
+            software, API integration and long term maintenance &mdash; the complete range of software
+            house services under one roof, at fair prices.
           </p>
         </motion.div>
 

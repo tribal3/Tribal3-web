@@ -168,7 +168,7 @@ export default function Hero() {
           </h1>
 
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-gray-400 sm:text-lg lg:mx-0">
-            Your full-service software house &mdash; web, apps, design, cloud and
+            Your best software house in Karachi &mdash; web, apps, design, cloud and
             marketing. Shaping the future of digital experience through technology.
           </p>
 

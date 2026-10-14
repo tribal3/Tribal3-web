@@ -5,6 +5,10 @@ import { motion } from "framer-motion";
 
 const places = [
   {
+    name: "Karachi, Pakistan",
+    img: "https://images.unsplash.com/photo-1567880905822-56f8e06fe630?q=80&w=600&auto=format&fit=crop",
+  },
+  {
     name: "New York, USA",
     img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=600&auto=format&fit=crop",
   },
@@ -45,7 +49,7 @@ export default function Expertise() {
             Delivering <span className="text-gradient">Innovations Worldwide</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-gray-400 sm:text-base">
-            Tribal 3 works with businesses in every corner of the world. Wherever you are, we provide complete digital
+            As a top software house in Karachi, Tribal 3 works with businesses in every corner of the world. Wherever you are, we provide complete digital
             solutions &mdash; from websites and apps to marketing and design &mdash; so you can grow your business online.
           </p>
         </motion.div>

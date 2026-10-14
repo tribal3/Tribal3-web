@@ -66,10 +66,10 @@ export default function About() {
         >
           <span className="text-cyan-400 text-sm tracking-[0.2em] uppercase">About Us</span>
           <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl md:text-5xl">
-            Your 360&deg; Digital <span className="text-gradient">Solutions Partner</span>
+            Best Software House in <span className="text-gradient">Karachi, Pakistan</span>
           </h2>
           <p className="mt-5 text-sm leading-relaxed text-gray-400 sm:text-base">
-            Tribal 3 is a full-service software house providing 360&deg; digital solutions &mdash; from web development, app development, and digital marketing to content creation, graphic design, and every service that transforms businesses from physical to digital. We help brands establish, grow, and scale their online presence end to end.
+            Tribal 3 is a full-service software house in Karachi providing 360&deg; digital solutions &mdash; from web development, mobile app development, and digital marketing to content creation, graphic design, and every service that transforms businesses from physical to digital. As one of the best software houses in Karachi, we build custom software, business websites and e-commerce stores for clients in Karachi, across Pakistan and worldwide, and help brands establish, grow and scale their online presence end to end.
           </p>
 
           <div className="mt-8 grid grid-cols-3 gap-3 sm:flex sm:flex-wrap sm:gap-8">

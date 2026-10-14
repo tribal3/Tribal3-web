@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiArrowRight, HiChevronDown } from "react-icons/hi";
 import tribalLogo from "../../../images/tribal.logo.png";
+import HashLink from "@/components/ui/HashLink";
 
 type NavChild = { label: string; href: string };
 type NavItem = { label: string; href?: string; children?: NavChild[] };
@@ -109,24 +110,24 @@ export default function Header() {
                 </AnimatePresence>
               </div>
             ) : (
-              <Link
+              <HashLink
                 key={link.href}
                 href={link.href ?? "/"}
                 className="text-sm text-gray-400 hover:text-cyan-400 transition-colors relative group"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300" />
-              </Link>
+              </HashLink>
             )
           )}
-          <Link
+          <HashLink
             href="/#contact"
             className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-2.5 text-sm font-semibold text-cyan-50 shadow-lg shadow-cyan-500/25 ring-1 ring-inset ring-[#bcdcff]/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-cyan-500/40"
           >
             <span className="pointer-events-none absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-[#eaf4ff]/40 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-[150%]" />
             <span className="relative">Get in Touch</span>
             <HiArrowRight className="relative text-base transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
+          </HashLink>
         </nav>
 
         <button
@@ -174,24 +175,24 @@ export default function Header() {
                     </div>
                   </div>
                 ) : (
-                  <Link
+                  <HashLink
                     key={link.href}
                     href={link.href ?? "/"}
                     onClick={() => setMenuOpen(false)}
                     className="flex min-h-11 items-center text-base text-gray-300 hover:text-cyan-400 transition-colors"
                   >
                     {link.label}
-                  </Link>
+                  </HashLink>
                 )
               )}
-              <Link
+              <HashLink
                 href="/#contact"
                 onClick={() => setMenuOpen(false)}
                 className="mt-2 flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-3 text-base font-semibold text-cyan-50 shadow-lg shadow-cyan-500/25"
               >
                 Get in Touch
                 <HiArrowRight className="text-lg" />
-              </Link>
+              </HashLink>
             </div>
           </motion.div>
         )}

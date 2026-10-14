@@ -7,7 +7,15 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Portfolio",
   description:
-    "Browse the portfolio of Tribal 3 - websites, apps and digital experiences we have designed and engineered for clients worldwide.",
+    "Browse the portfolio of Tribal 3, a leading software house in Karachi. See websites, mobile apps and digital experiences we have designed and engineered for clients worldwide.",
+  keywords: [
+    "software house in Karachi",
+    "best software house in Karachi",
+    "web development portfolio Karachi",
+    "web development company in Karachi",
+    "mobile app development Karachi",
+    "SEO services in Karachi",
+  ],
   alternates: { canonical: "/portfolio" },
 };
 
