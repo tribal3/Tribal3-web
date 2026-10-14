@@ -35,6 +35,7 @@ export async function POST(req: NextRequest) {
       description: body.description.trim(),
       imageUrl: body.imageUrl,
       url: body.url,
+      seats: body.seats != null ? Number(body.seats) || 0 : undefined,
       order: body.order,
     });
 

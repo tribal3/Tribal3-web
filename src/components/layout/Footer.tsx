@@ -1,3 +1,16 @@
+import Link from "next/link";
+import { SITE_EMAIL, mailComposeUrl } from "@/lib/seo";
+
+const quickLinks = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/#services" },
+  { label: "About", href: "/#about" },
+  { label: "Products", href: "/products" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Jobs", href: "/jobs" },
+  { label: "Contact", href: "/#contact" },
+];
+
 export default function Footer() {
   return (
     <footer className="border-t border-dark-700 bg-dark-900 pt-12 pb-6 sm:pt-16 sm:pb-8">
@@ -16,21 +29,17 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <h4 className="text-white text-sm font-semibold mb-3 uppercase tracking-wider">Quick Links</h4>
-            <ul className="space-y-1 sm:space-y-2">
-              {[
-                { label: "Services", href: "#services" },
-                { label: "About", href: "#about" },
-                { label: "Products", href: "/products" },
-                { label: "Portfolio", href: "/portfolio" },
-                { label: "Contact", href: "#contact" },
-              ].map((l) => (
-                <li key={l.label}>
-                  <a href={l.href} className="flex min-h-10 items-center text-sm text-gray-500 transition-colors hover:text-cyan-400">
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <nav aria-label="Footer quick links">
+              <ul className="space-y-1 sm:space-y-2">
+                {quickLinks.map((l) => (
+                  <li key={l.label}>
+                    <Link href={l.href} className="flex min-h-10 items-center text-sm text-gray-500 transition-colors hover:text-cyan-400">
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
 
           {/* Services */}
@@ -49,7 +58,16 @@ export default function Footer() {
           <div className="col-span-2 min-w-0 sm:col-span-1">
             <h4 className="text-white text-sm font-semibold mb-3 uppercase tracking-wider">Get In Touch</h4>
             <ul className="space-y-1 sm:space-y-2">
-              <li><span className="flex min-h-10 items-center break-all text-sm text-gray-500">tribal3tech@gmail.com</span></li>
+              <li>
+                <a
+                  href={mailComposeUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-10 items-center break-all text-sm text-gray-500 transition-colors hover:text-cyan-400"
+                >
+                  {SITE_EMAIL}
+                </a>
+              </li>
               <li><span className="flex min-h-10 items-center text-sm text-gray-500">Pakistan</span></li>
               <li className="flex flex-wrap gap-x-4 gap-y-1 pt-1">
                 {["Twitter", "LinkedIn", "GitHub"].map((s) => (

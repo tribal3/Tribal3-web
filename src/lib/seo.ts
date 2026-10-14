@@ -4,6 +4,11 @@ export const SITE_URL = (
 ).replace(/\/+$/, "");
 
 export const SITE_EMAIL = "tribal3tech@gmail.com";
+
+export function mailComposeUrl(subject = "") {
+  const base = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(SITE_EMAIL)}`;
+  return subject ? `${base}&su=${encodeURIComponent(subject)}` : base;
+}
 export const SITE_CITY = "Karachi";
 export const SITE_COUNTRY = "PK";
 

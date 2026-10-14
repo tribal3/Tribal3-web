@@ -1,6 +1,18 @@
 {
   "items": [
     {
+      "_id": "job-sales-executive-0001",
+      "type": "job",
+      "title": "Sales Executive",
+      "description": "Tribal 3 is hiring a Sales Executive to grow our client base and close new business.\n\nResponsibilities:\n- Generate and qualify leads through calls, email and social media.\n- Present and pitch our web, app and digital marketing services to clients.\n- Build and maintain strong client relationships end to end.\n- Meet and exceed monthly sales targets.\n\nRequirements:\n- 1+ year of sales or business development experience.\n- Excellent communication and negotiation skills.\n- Self-motivated, target-driven and fluent in English and Urdu.",
+      "imageUrl": "",
+      "url": "",
+      "seats": 2,
+      "order": 0,
+      "createdAt": "2026-10-12T00:00:00.000Z",
+      "updatedAt": "2026-10-12T00:00:00.000Z"
+    },
+    {
       "_id": "c28cf3b5-883f-416b-90f8-ecdb42bf8df9",
       "type": "portfolio",
       "title": "Miftah Al Quran",

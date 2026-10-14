@@ -4,7 +4,7 @@ import { useState, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-type ContentType = "product" | "portfolio";
+type ContentType = "product" | "portfolio" | "job";
 type Tab = "add" | "manage";
 
 interface ItemDoc {
@@ -14,6 +14,7 @@ interface ItemDoc {
   description: string;
   imageUrl: string;
   url: string;
+  seats: number;
   order: number;
   createdAt: string;
 }
@@ -23,14 +24,22 @@ interface FormData {
   description: string;
   imageUrl: string;
   url: string;
+  seats: string;
 }
 
 const contentTypes: { value: ContentType; label: string }[] = [
   { value: "product", label: "Products" },
   { value: "portfolio", label: "Portfolio" },
+  { value: "job", label: "Jobs" },
 ];
 
-const emptyForm: FormData = { title: "", description: "", imageUrl: "", url: "" };
+const NOUNS: Record<ContentType, string> = {
+  product: "Product",
+  portfolio: "Portfolio Item",
+  job: "Job",
+};
+
+const emptyForm: FormData = { title: "", description: "", imageUrl: "", url: "", seats: "" };
 
 export default function AdminPage() {
   const [secretKey, setSecretKey] = useState("");
@@ -44,7 +53,7 @@ export default function AdminPage() {
   const [form, setForm] = useState<FormData>(emptyForm);
   const [deleteTarget, setDeleteTarget] = useState<ItemDoc | null>(null);
 
-  const noun = contentType === "product" ? "Product" : "Portfolio Item";
+  const noun = NOUNS[contentType];
 
   const fetchItems = useCallback(async (type: ContentType) => {
     try {
@@ -80,7 +89,11 @@ export default function AdminPage() {
     setResult(null);
 
     try {
-      const payload = { ...form, type: contentType };
+      const payload = {
+        ...form,
+        seats: form.seats === "" ? undefined : Number(form.seats),
+        type: contentType,
+      };
       const url = editingId ? `/api/catalog/${editingId}` : "/api/catalog";
       const method = editingId ? "PUT" : "POST";
 
@@ -132,6 +145,7 @@ export default function AdminPage() {
       description: item.description,
       imageUrl: item.imageUrl || "",
       url: item.url || "",
+      seats: item.seats ? String(item.seats) : "",
     });
     setEditingId(item._id);
     setTab("add");
@@ -251,7 +265,11 @@ export default function AdminPage() {
             <form onSubmit={(e) => void handleSubmit(e)} className="space-y-5">
               <div>
                 <label className="block text-sm text-gray-400 mb-1">
-                  {contentType === "product" ? "Product Name" : "Project Title"}
+                  {contentType === "job"
+                    ? "Job Title"
+                    : contentType === "product"
+                    ? "Product Name"
+                    : "Project Title"}
                 </label>
                 <input
                   type="text"
@@ -261,6 +279,19 @@ export default function AdminPage() {
                   className="w-full bg-dark-700 border border-dark-600 rounded-xl px-5 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/50"
                 />
               </div>
+              {contentType === "job" && (
+                <div>
+                  <label className="block text-sm text-gray-400 mb-1">Number of Seats</label>
+                  <input
+                    type="number"
+                    min={0}
+                    value={form.seats}
+                    onChange={(e) => setForm({ ...form, seats: e.target.value })}
+                    placeholder="e.g. 2"
+                    className="w-full bg-dark-700 border border-dark-600 rounded-xl px-5 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/50"
+                  />
+                </div>
+              )}
               <div>
                 <label className="block text-sm text-gray-400 mb-1">Description</label>
                 <textarea
@@ -271,6 +302,8 @@ export default function AdminPage() {
                   className="w-full bg-dark-700 border border-dark-600 rounded-xl px-5 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/50 resize-none"
                 />
               </div>
+              {contentType !== "job" && (
+              <>
               <div>
                 <label className="block text-sm text-gray-400 mb-2">Image URL</label>
                 <input
@@ -296,6 +329,8 @@ export default function AdminPage() {
                   className="w-full bg-dark-700 border border-dark-600 rounded-xl px-5 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/50"
                 />
               </div>
+              </>
+              )}
 
               <button
                 type="submit"
@@ -325,11 +360,15 @@ export default function AdminPage() {
               <div className="space-y-3">
                 {items.map((item) => (
                   <div key={item._id} className="glass-card rounded-xl p-4 flex items-center gap-4 group">
-                    <div className="relative w-20 h-14 rounded-lg overflow-hidden shrink-0 bg-dark-700">
-                      {item.imageUrl ? (
+                    <div className="relative flex h-14 w-20 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-dark-700">
+                      {item.type === "job" ? (
+                        <span className="text-xs font-medium text-cyan-300">
+                          {item.seats ?? 0} seat{(item.seats ?? 0) === 1 ? "" : "s"}
+                        </span>
+                      ) : item.imageUrl ? (
                         <Image src={item.imageUrl} alt={item.title} fill className="object-contain" sizes="80px" />
                       ) : (
-                        <div className="flex items-center justify-center h-full text-xs text-gray-600">No img</div>
+                        <span className="text-xs text-gray-600">No img</span>
                       )}
                     </div>
                     <div className="flex-1 min-w-0">

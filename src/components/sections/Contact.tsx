@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { HiMail, HiMap } from "react-icons/hi";
+import { SITE_EMAIL, mailComposeUrl } from "@/lib/seo";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -109,9 +110,9 @@ export default function Contact() {
             className="space-y-4 sm:space-y-6"
           >
             {[
-              { icon: HiMail, label: "Email", value: "tribal3tech@gmail.com" },
-              // { icon: HiPhone, label: "Phone", value: "+92 3122767819" },
-              { icon: HiMap, label: "Location", value: "Karachi, Pakistan" },
+              { icon: HiMail, label: "Email", value: SITE_EMAIL, href: mailComposeUrl() },
+              // { icon: HiPhone, label: "Phone", value: "+92 3122767819", href: "tel:+923122767819" },
+              { icon: HiMap, label: "Location", value: "Karachi, Pakistan", href: "" },
             ].map((item) => {
               const Icon = item.icon;
               return (
@@ -121,7 +122,18 @@ export default function Contact() {
                   </div>
                   <div className="min-w-0">
                     <p className="text-xs uppercase tracking-wider text-gray-400">{item.label}</p>
-                    <p className="break-words text-sm font-medium text-white sm:text-base">{item.value}</p>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="break-words text-sm font-medium text-white transition-colors hover:text-cyan-400 sm:text-base"
+                      >
+                        {item.value}
+                      </a>
+                    ) : (
+                      <p className="break-words text-sm font-medium text-white sm:text-base">{item.value}</p>
+                    )}
                   </div>
                 </div>
               );

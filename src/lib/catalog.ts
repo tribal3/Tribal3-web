@@ -2,7 +2,7 @@ import { promises as fs } from "node:fs";
 import { randomUUID } from "node:crypto";
 import path from "node:path";
 
-export type CatalogType = "product" | "portfolio";
+export type CatalogType = "product" | "portfolio" | "job";
 
 export interface CatalogItemData {
   _id: string;
@@ -11,6 +11,7 @@ export interface CatalogItemData {
   description: string;
   imageUrl: string;
   url: string;
+  seats: number;
   order: number;
   createdAt: string;
   updatedAt: string;
@@ -22,19 +23,22 @@ export interface CatalogItemInput {
   description: string;
   imageUrl?: string;
   url?: string;
+  seats?: number;
   order?: number;
 }
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const DATA_FILE = path.join(DATA_DIR, "catalog.json");
 
-export const CATALOG_TYPES: CatalogType[] = ["product", "portfolio"];
+export const CATALOG_TYPES: CatalogType[] = ["product", "portfolio", "job"];
 
 async function readAll(): Promise<CatalogItemData[]> {
   try {
     const raw = await fs.readFile(DATA_FILE, "utf-8");
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed.items) ? parsed.items : [];
+    return Array.isArray(parsed.items)
+      ? parsed.items.map((item: CatalogItemData) => ({ ...item, seats: item.seats ?? 0 }))
+      : [];
   } catch {
     return [];
   }
@@ -66,6 +70,7 @@ export async function createCatalogItem(input: CatalogItemInput): Promise<Catalo
     description: input.description,
     imageUrl: input.imageUrl || "",
     url: input.url || "",
+    seats: input.seats ?? 0,
     order: input.order || 0,
     createdAt: now,
     updatedAt: now,
@@ -88,6 +93,7 @@ export async function updateCatalogItem(
     description: input.description,
     imageUrl: input.imageUrl || "",
     url: input.url || "",
+    seats: input.seats ?? items[index].seats ?? 0,
     order: input.order ?? items[index].order,
     updatedAt: new Date().toISOString(),
   };
