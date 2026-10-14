@@ -11,7 +11,7 @@ export function mailComposeUrl(subject = "") {
 }
 export const SITE_CITY = "Karachi";
 export const SITE_COUNTRY = "PK";
-
+// hello
 export const SOCIAL_LINKS = [
   "https://www.instagram.com/tribal3tech/",
   "https://www.linkedin.com/in/tribal-3-27a299435/",
