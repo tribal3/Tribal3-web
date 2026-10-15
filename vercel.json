@@ -1,8 +1,1 @@
-{
-  "rewrites": [
-    {
-      "source": "/:path((?!api/|admin|products|portfolio|sitemap|robots|manifest|icon|opengraph-image|twitter-image|_next/|.*\\.).*)",
-      "destination": "/"
-    }
-  ]
-}
+{}
