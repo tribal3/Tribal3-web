@@ -25,7 +25,7 @@ export default function About() {
               <div className="overflow-hidden rounded-xl border border-dark-600 sm:rounded-2xl">
                 <Image
                   src="https://images.unsplash.com/photo-1603201667141-5a2d4c673378?w=500&q=80"
-                  alt="Creative team collaborating"
+                  alt="Tribal 3 creative team collaborating in Karachi"
                   width={500}
                   height={500}
                   sizes="(max-width: 640px) 45vw, 25vw"
@@ -35,7 +35,7 @@ export default function About() {
               <div className="overflow-hidden rounded-xl border border-dark-600 sm:rounded-2xl">
                 <Image
                   src="https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?w=500&q=80"
-                  alt="Project showcase"
+                  alt="Tribal 3 project showcase"
                   width={500}
                   height={500}
                   sizes="(max-width: 640px) 45vw, 25vw"
@@ -47,7 +47,7 @@ export default function About() {
               <div className="overflow-hidden rounded-xl border border-dark-600 sm:rounded-2xl">
                 <Image
                   src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=500&q=80"
-                  alt="Team collaboration"
+                  alt="Tribal 3 team collaboration at our software house"
                   width={500}
                   height={500}
                   sizes="(max-width: 640px) 45vw, 25vw"

@@ -1,5 +1,15 @@
+import Link from "next/link";
 import HashLink from "@/components/ui/HashLink";
-import { SITE_EMAIL, mailComposeUrl } from "@/lib/seo";
+import { HiOutlineMail, HiOutlineLocationMarker } from "react-icons/hi";
+import { FaLinkedinIn, FaInstagram, FaFacebookF, FaTiktok } from "react-icons/fa6";
+import { SITE_EMAIL, SOCIAL_PROFILES, mailComposeUrl } from "@/lib/seo";
+
+const socialIcons: Record<string, typeof FaLinkedinIn> = {
+  LinkedIn: FaLinkedinIn,
+  Instagram: FaInstagram,
+  Facebook: FaFacebookF,
+  TikTok: FaTiktok,
+};
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -22,7 +32,7 @@ export default function Footer() {
               <span className="text-gradient">Tribal 3</span>
             </h3>
             <p className="text-gray-500 text-sm leading-relaxed">
-              Tribal 3 is a leading software house in Karachi offering web
+              Tribal 3 (Tribal3) is a leading software house in Karachi offering web
               development, mobile app development, UI/UX design, SEO and digital
               marketing. We build premium digital experiences that transform your
               vision into reality.
@@ -32,6 +42,26 @@ export default function Footer() {
               &bull; web development company in Karachi &bull; mobile app
               development &bull; SEO services in Karachi.
             </p>
+
+            <ul className="mt-5 flex flex-wrap items-center gap-2">
+              {SOCIAL_PROFILES.map((social) => {
+                const Icon = socialIcons[social.label] ?? FaLinkedinIn;
+                return (
+                  <li key={social.label}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="me noopener noreferrer"
+                      aria-label={`Tribal 3 on ${social.label}`}
+                      title={`Tribal 3 on ${social.label} (${social.handle})`}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-dark-600 text-gray-500 transition-colors hover:border-cyan-400/50 hover:bg-cyan-500/10 hover:text-cyan-400"
+                    >
+                      <Icon className="text-base" aria-hidden />
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
 
           {/* Quick Links */}
@@ -71,15 +101,28 @@ export default function Footer() {
                   href={mailComposeUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex min-h-10 items-center break-all text-sm text-gray-500 transition-colors hover:text-cyan-400"
+                  className="flex min-h-10 items-center gap-2 break-all text-sm text-gray-500 transition-colors hover:text-cyan-400"
                 >
-                  {SITE_EMAIL}
+                  <HiOutlineMail aria-hidden /> {SITE_EMAIL}
                 </a>
               </li>
-              <li><span className="flex min-h-10 items-center text-sm text-gray-500">Pakistan</span></li>
+              <li>
+                <span className="flex min-h-10 items-center gap-2 text-sm text-gray-500">
+                  <HiOutlineLocationMarker aria-hidden /> Karachi, Pakistan
+                </span>
+              </li>
               <li className="flex flex-wrap gap-x-4 gap-y-1 pt-1">
-                {["Twitter", "LinkedIn", "GitHub"].map((s) => (
-                  <a key={s} href="#" className="flex min-h-10 items-center text-sm text-gray-500 transition-colors hover:text-cyan-400">{s}</a>
+                {SOCIAL_PROFILES.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="me noopener noreferrer"
+                    aria-label={`Tribal 3 on ${social.label}`}
+                    className="flex min-h-10 items-center text-sm text-gray-500 transition-colors hover:text-cyan-400"
+                  >
+                    {social.label}
+                  </a>
                 ))}
               </li>
             </ul>
@@ -91,8 +134,8 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Tribal 3. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-x-5 gap-y-1 text-xs text-gray-600 sm:justify-end">
-            <a href="#" className="flex min-h-10 items-center transition-colors hover:text-cyan-400">Privacy Policy</a>
-            <a href="#" className="flex min-h-10 items-center transition-colors hover:text-cyan-400">Terms of Service</a>
+            <Link href="/privacy-policy" className="flex min-h-10 items-center transition-colors hover:text-cyan-400">Privacy Policy</Link>
+            <Link href="/terms" className="flex min-h-10 items-center transition-colors hover:text-cyan-400">Terms of Service</Link>
           </div>
         </div>
       </div>

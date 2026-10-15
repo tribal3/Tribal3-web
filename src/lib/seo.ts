@@ -16,16 +16,30 @@ export const SITE_COUNTRY = "PK";
 export const SITE_TAGLINE = "Best Software House in Karachi";
 // hello
 
+export const LINKEDIN_URL = "https://www.linkedin.com/company/tribal-3/";
+export const INSTAGRAM_URL = "https://www.instagram.com/tribal3tech/";
+export const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61594747920854";
+export const TIKTOK_URL = "https://www.tiktok.com/@tribal3techgmail.com";
+
 export const SOCIAL_LINKS = [
-  "https://www.instagram.com/tribal3tech/",
-  "https://www.linkedin.com/in/tribal-3-27a299435/",
+  LINKEDIN_URL,
+  INSTAGRAM_URL,
+  FACEBOOK_URL,
+  TIKTOK_URL,
+];
+
+export const SOCIAL_PROFILES: { label: string; handle: string; href: string }[] = [
+  { label: "LinkedIn", handle: "Tribal 3", href: LINKEDIN_URL },
+  { label: "Instagram", handle: "@tribal3tech", href: INSTAGRAM_URL },
+  { label: "Facebook", handle: "Tribal 3", href: FACEBOOK_URL },
+  { label: "TikTok", handle: "@tribal3tech", href: TIKTOK_URL },
 ];
 
 export const TITLE =
-  "Tribal 3 | Best Software House in Karachi | Web Development Company";
+  "Tribal 3 | Best Software House in Karachi | Web & App Development";
 
 export const DESCRIPTION =
-  "Tribal 3 is the best software house in Karachi offering custom web development, MERN stack apps, Shopify and WordPress e-commerce, mobile app development, UI/UX design, SEO and digital marketing. Hire a top software company and IT company in Karachi, Pakistan for software development, software house services and business websites.";
+  "Tribal 3 (also known as Tribal3 and Tribal 3 Tech) is the best software house in Karachi offering custom web development, MERN stack apps, Shopify and WordPress e-commerce, mobile app development, UI/UX design, SEO and digital marketing. Hire a top software company and IT company in Karachi, Pakistan for software development, software house services and business websites.";
 
 // Local + commercial + long-tail search phrases this site targets.
 // Includes common spelling variants users actually type into Google.
@@ -188,6 +202,32 @@ export const KEYWORDS = [
   "tribal three",
   "tribel 3",
   "tribal3tech",
+  "tribal 3 software house",
+  "tribal 3 software house in karachi",
+  "tribal 3 best software house in karachi",
+  "tribal 3 karachi",
+  "tribal 3 tech",
+  "tribal 3 tech karachi",
+  "tribal 3 company",
+  "tribal 3 it company",
+  "tribal 3 web development",
+  "tribal 3 software company",
+  "tribal 3 digital agency",
+  "tribal 3 pakistan",
+  "tribal 3 jobs",
+  "tribal 3 portfolio",
+  "tribal 3 services",
+  "tribal 3 solutions",
+  "tribal 3 agency karachi",
+  "tribal3tech software house",
+  "tribal3tech karachi",
+  "tribal3 tech",
+  "tribal 3 tech ltd",
+  "tribal 3 contact",
+  "tribal 3 address karachi",
+  "tribal 3 website development",
+  "tribal three software house",
+  "tribal 3 - best software house",
   "softwere house in karachi",
   "softwear house in karachi",
   "software house in karatchi",
@@ -286,6 +326,21 @@ export const SERVICES: SeoService[] = [
 
 export const FAQS: { question: string; answer: string }[] = [
   {
+    question: "What is Tribal 3?",
+    answer:
+      "Tribal 3 (also searched as Tribal3 or Tribal 3 Tech) is a Karachi based software house and digital agency in Pakistan. Tribal 3 builds websites, mobile apps, e-commerce stores, UI/UX designs, SEO and digital marketing campaigns for businesses in Karachi and worldwide.",
+  },
+  {
+    question: "Is Tribal 3 the best software house in Karachi?",
+    answer:
+      "Tribal 3 is widely recommended as one of the best software houses in Karachi because of its 50+ delivered projects, 30+ happy clients, transparent pricing and on-time delivery across web development, mobile apps, SEO and digital marketing.",
+  },
+  {
+    question: "How can I contact Tribal 3?",
+    answer:
+      "You can contact Tribal 3 by email at tribal3tech@gmail.com, through the contact form on this website, or by following Tribal 3 on LinkedIn, Instagram, Facebook and TikTok. Tribal 3 is based in Karachi, Pakistan and serves clients worldwide.",
+  },
+  {
     question: "Which is the best software house in Karachi?",
     answer:
       "Tribal 3 is a top software house in Karachi providing web development, mobile app development, UI/UX design, SEO, digital marketing and custom software for businesses in Pakistan and worldwide.",
@@ -314,7 +369,17 @@ export const organizationSchema = {
       "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
       "@id": `${SITE_URL}/#organization`,
       name: SITE_NAME,
-      alternateName: ["Tribal 3", "Tribal3", "Tribal Three", "Tribal 3 Software House"],
+      alternateName: [
+        "Tribal 3",
+        "Tribal3",
+        "Tribal 3 Tech",
+        "Tribal3tech",
+        "Tribal Three",
+        "Tribal 3 Software House",
+        "Tribal 3 Karachi",
+        "Tribal 3 Software Company",
+      ],
+      legalName: "Tribal 3",
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",

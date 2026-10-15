@@ -163,13 +163,14 @@ export default function Hero() {
           </span>
 
           <h1 className="mx-auto mt-5 max-w-2xl text-4xl font-bold leading-[1.08] text-white sm:text-5xl md:text-6xl lg:mx-0 lg:text-[4.25rem]">
-            We Turn Ideas Into{" "}
-            <span className="text-gradient">Digital Reality</span>
+            <span className="text-gradient">Tribal 3</span> Turns Ideas Into
+            Digital Reality
           </h1>
 
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-gray-400 sm:text-lg lg:mx-0">
-            Your best software house in Karachi &mdash; web, apps, design, cloud and
-            marketing. Shaping the future of digital experience through technology.
+            Tribal 3 is your best software house in Karachi &mdash; web, apps,
+            design, cloud and marketing. Shaping the future of digital experience
+            through technology.
           </p>
 
           <motion.div

@@ -4,7 +4,15 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { HiMail, HiMap } from "react-icons/hi";
-import { SITE_EMAIL, mailComposeUrl } from "@/lib/seo";
+import { FaLinkedinIn, FaInstagram, FaFacebookF, FaTiktok } from "react-icons/fa6";
+import { SITE_EMAIL, SOCIAL_PROFILES, mailComposeUrl } from "@/lib/seo";
+
+const socialIcons: Record<string, typeof FaLinkedinIn> = {
+  LinkedIn: FaLinkedinIn,
+  Instagram: FaInstagram,
+  Facebook: FaFacebookF,
+  TikTok: FaTiktok,
+};
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -143,6 +151,30 @@ export default function Contact() {
                 </div>
               );
             })}
+
+            <div className="glass-card rounded-xl p-4 sm:p-5">
+              <p className="text-xs uppercase tracking-wider text-gray-400">
+                Follow Tribal 3
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {SOCIAL_PROFILES.map((social) => {
+                  const Icon = socialIcons[social.label] ?? FaLinkedinIn;
+                  return (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="me noopener noreferrer"
+                      aria-label={`Tribal 3 on ${social.label}`}
+                      className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-dark-600 px-3 py-2 text-sm font-medium text-gray-400 transition-colors hover:border-cyan-400/50 hover:bg-cyan-500/10 hover:text-cyan-400"
+                    >
+                      <Icon aria-hidden />
+                      {social.label}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>

@@ -48,6 +48,11 @@ export const metadata: Metadata = {
     },
   },
   formatDetection: { telephone: false, address: false, email: false },
+  other: {
+    brand: "Tribal 3",
+    "alternate-name": "Tribal 3, Tribal3, Tribal 3 Tech, Tribal3tech, Tribal Three",
+    "og:site_name": SITE_NAME,
+  },
 };
 
 export const viewport: Viewport = {
